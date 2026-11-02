@@ -1,0 +1,41 @@
+name: "占星術師"
+slug: "senseijutsushi"
+summary: "施策の結果を分析し、次に試すことを提案する"
+section: "企画・調査"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "medium"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "medium"
+  backup_automatic: true
+  backup_models:
+  - provider: "codex"
+    model: "gpt-6.1-sol"
+skills:
+- kwp/explore-data
+- kwp/performance-report
+- kwp/validate-data
+optional_skills:
+- kwp/statistical-analysis
+skill_usage:
+- id: kwp/explore-data
+  purpose: 分析前に粒度・欠損・重複・期間・異常値を確かめられる。
+  when: 提供exportのprofiling。元ファイルを改変する許可は含めない。
+- id: kwp/performance-report
+  purpose: 指標比較・funnel診断・仮説・次のexperimentを一つのreportにできる。
+  when: 数値根拠のある分析と提案。配信設定・spend変更なし。
+- id: kwp/validate-data
+  purpose: 分母・比較期間・集計と因果の飛躍を最終点検できる。
+  when: 元データで再計算できた部分と未検証部分を区別。
+- id: kwp/statistical-analysis
+  purpose: データから推定・比較を行い、効果量と不確実性を整理する。
+  when: 仮説検定・分布比較・相関等が必要で、取得条件と計算環境を確認できる場合。品質点検の後に行う。
+skill_notes:
+- 提供データの範囲と集計条件を確認する。施策の配信や予算変更は含めない。高度な統計推論は追加の検証が必要。

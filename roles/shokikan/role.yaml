@@ -1,0 +1,39 @@
+name: "書記官"
+slug: "shokikan"
+summary: "会議メモから、決まったことと担当をまとめる"
+section: "運営"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "claude"
+  model: "claude-sonnet-5-5"
+  effort: "medium"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "claude"
+  model: "claude-sonnet-5-5"
+  effort: "medium"
+  backup_automatic: true
+  backup_models:
+  - provider: "codex"
+    model: "gpt-6.1-sol"
+  skill_overrides:
+  - skill: anthropics/internal-comms
+    action: use_existing_if_available
+    existing_skill: internal-communications
+    fallback: use_catalog_skill
+skills:
+- pm-skills/summarize-meeting
+optional_skills:
+- anthropics/internal-comms
+skill_usage:
+- id: pm-skills/summarize-meeting
+  purpose: 決定・担当・期限・未解決点の抽出に直接対応。
+  when: 与えられた会議メモ・文字起こしだけから議事録。担当・期限不明は未確認。
+- id: anthropics/internal-comms
+  purpose: 会議の決定事項を、関係者向けの共有文や報告の下書きに整える。
+  when: 議事録に加えて共有文を求められたとき。会議資料にある事実だけを使い、担当・期限・約束を補わず、送信しない。
+skill_notes:
+- 会議メモにない担当・期限・約束は未確認とし、補って確定しない。
+- OpenBotで既存スキルを使う条件はopenbot.skill_overridesに記録。存在・用途・利用条件を確認できなければ共通候補を使う。

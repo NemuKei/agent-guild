@@ -1,0 +1,34 @@
+name: "結界師"
+slug: "kekkaishi"
+summary: "コードの安全上の弱点を探し、対策の優先順位をつける"
+section: "開発"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "codex"
+  model: "gpt-6.1-sol"
+  effort: "high"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "codex"
+  model: "gpt-6.1-sol"
+  effort: "high"
+  backup_automatic: true
+  backup_models:
+  - provider: "claude"
+    model: "claude-opus-5-5"
+skills:
+- openai/security-threat-model
+- openai/security-best-practices
+optional_skills: []
+skill_usage:
+- id: openai/security-threat-model
+  purpose: 実在するtrust boundary・悪用経路・影響から優先度付き対策を作る役割の指示に直接対応。
+  when: 明示的なリポジトリ脅威モデル/abuse-path分析依頼。
+- id: openai/security-best-practices
+  purpose: 対象stackに合う実装上の安全性ガイドとコード根拠付きレビューを補完。
+  when: 明示的securityレビュー・secure-by-default実装依頼、Python/JS/TS/Goに限定。
+skill_notes:
+- 明示的な脅威分析・安全性レビューの依頼に使う。修正は依頼された範囲だけ。
+- best-practicesの対象はPython・JavaScript・TypeScript・Go。その他の言語や分野の専門監査は別途必要。

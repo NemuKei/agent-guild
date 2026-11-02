@@ -1,0 +1,33 @@
+name: "試験官"
+slug: "shikenkan"
+summary: "採用面接の質問と評価の基準を作る"
+section: "営業・広報"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "medium"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "medium"
+  backup_automatic: true
+  backup_models:
+  - provider: "codex"
+    model: "gpt-6.1-sol"
+skills:
+- kwp/interview-prep
+optional_skills:
+- pm-skills/summarize-meeting
+skill_usage:
+- id: kwp/interview-prep
+  purpose: competency-based質問、共通rubric、debriefを持ち、Hiring Scorecardの機能説明に直接一致。
+  when: 採用職務に関係する面接設計。採否決定・候補者連絡は権限外。
+- id: pm-skills/summarize-meeting
+  purpose: 面接後検討会の決定・担当・追加質問を記録できる。
+  when: 提供記録から事実を抽出。印象を評価証拠へ置き換えない。
+skill_notes:
+- 採用面接のための候補。ソフトウェアの試験とは用途が違う。評価は職務と面接で得られた根拠に結び付ける。

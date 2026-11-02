@@ -1,0 +1,39 @@
+name: "文官"
+slug: "bunkan"
+summary: "大事な文書や報告を、判断しやすい形に書く"
+section: "制作"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "medium"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "medium"
+  backup_automatic: true
+  backup_models:
+  - provider: "codex"
+    model: "gpt-6.1-sol"
+  skill_overrides:
+  - skill: anthropics/internal-comms
+    action: use_existing_if_available
+    existing_skill: internal-communications
+    fallback: use_catalog_skill
+skills:
+- anthropics/internal-comms
+- yomiyasu
+optional_skills: []
+skill_usage:
+- id: anthropics/internal-comms
+  purpose: 社内報告・案内・進捗を、読み手と目的に合う文書にまとめる。
+  when: 提供された素材から社内向けの文書を作るとき。事実と未確認事項を分け、下書きの作成と送信の権限を分ける。
+- id: yomiyasu
+  purpose: 意味と条件を保って日本語本文を推敲する。
+  when: 日本語の推敲を依頼されたとき、または役割の指示で求められた最終推敲。数値・出典・主張の強さを保つ。
+skill_notes:
+- 重要な推奨・見積もり・解釈を軽く自己点検する同等スキルは今回未採用。役割の指示にある判断点検を維持する。
+- OpenBotで既存スキルを使う条件はopenbot.skill_overridesに記録。存在・用途・利用条件を確認できなければ共通候補を使う。

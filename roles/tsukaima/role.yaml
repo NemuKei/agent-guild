@@ -1,0 +1,35 @@
+name: "使い魔"
+slug: "tsukaima"
+summary: "ブラウザやアプリの画面を操作する"
+section: "運営"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "codex"
+  model: "gpt-6.1-terra"
+  effort: "max"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "codex"
+  model: "gpt-6.1-terra"
+  effort: "max"
+  backup_automatic: true
+  backup_models:
+  - provider: "claude"
+    model: "claude-sonnet-5-5"
+skills: []
+optional_skills:
+- openai/screenshot
+- vercel/agent-browser
+skill_usage:
+- id: openai/screenshot
+  purpose: 既存ツールで撮れないアプリ画面の記録を補う。
+  when: OpenBotでは使わない。Mausbotなど別のアプリ向けの候補。画面記録だけで、OSの入力操作機能ではない。
+- id: vercel/agent-browser
+  purpose: 画面確認→操作→再確認を繰り返す役割に合う。
+  when: OpenBotでは使わない。Mausbotなど別のアプリでCLIの利用が必要なブラウザ作業に限る。利用先の操作ツールとログイン引継ぎのルールを守る。
+skill_notes:
+- OpenBotではvercel/agent-browserとopenai/screenshotは使わない。Mausbotなど別のアプリ向けの候補とする。
+- OpenBotのブラウザ操作は、ユーザーが明示しない限り内蔵ブラウザ（openbot_browser）を使う。別のブラウザとはサインインが共有されない。画面取得もOpenBotの道具を使う。
+- 画面取得スキルはクリックや入力を行わない。認証操作の持ち主への引き継ぎ、対象画面・アカウント・操作の許可範囲を維持する。

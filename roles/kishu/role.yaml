@@ -1,0 +1,37 @@
+name: "旗手"
+slug: "kishu"
+summary: "公開に向けて、リリースノートと公開前のチェックリストを作る"
+section: "開発"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "claude"
+  model: "claude-sonnet-5-5"
+  effort: "medium"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "claude"
+  model: "claude-sonnet-5-5"
+  effort: "medium"
+  backup_automatic: true
+  backup_models:
+  - provider: "codex"
+    model: "gpt-6.1-sol"
+skills:
+- pm-skills/release-notes
+- pm-skills/summarize-meeting
+- kwp/roadmap-update
+optional_skills: []
+skill_usage:
+- id: pm-skills/release-notes
+  purpose: 提供変更を利用者の便益・破壊的変更・修正に整理できる。
+  when: 完了を確認できた変更からリリースノートの草案を作る。計画・実装済み・公開済みを区別し、公開前の予定を公開済みと記載しない。
+- id: pm-skills/summarize-meeting
+  purpose: 会議の決定・担当・期限・未解決事項をlaunch準備に渡せる。
+  when: 提供された会議記録の抽出。external task作成・発信は含まない。
+- id: kwp/roadmap-update
+  purpose: launchの時期・担当・依存・blockerを一貫した一覧で扱える。
+  when: launch工程の要約。具体的な受入checklistは既存役割の指示で補う。
+skill_notes:
+- 計画・実装済み・公開済みを区別し、予定を完了した変更として書かない。公開そのものの許可は増えない。

@@ -1,0 +1,30 @@
+name: "彫刻師"
+slug: "choukokushi"
+summary: "3Dのモデル・動き・書き出し"
+section: "制作"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "codex"
+  model: "gpt-6.1-sol"
+  effort: "high"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "codex"
+  model: "gpt-6.1-sol"
+  effort: "high"
+  backup_automatic: true
+  backup_models:
+  - provider: "claude"
+    model: "claude-opus-5-5"
+skills:
+- blender-game-skills/blender-image-to-3d
+optional_skills: []
+skill_usage:
+- id: blender-game-skills/blender-image-to-3d
+  purpose: キャラクターやセットの見本比較、骨格、短い動き、web用書き出しに対応する。
+  when: 既存形状を保つ修正に必要な工程だけ。原本保持・見本の優先順位・3候補で見直す既存ルールを優先。
+skill_notes:
+- Blenderと必要なPythonライブラリを用意し、複製した小さなモデルから試す。
+- 原本を保持し、利用者の参照画像を優先する。一度に一候補、改善しない三候補で見直す。実務有効性は未評価。

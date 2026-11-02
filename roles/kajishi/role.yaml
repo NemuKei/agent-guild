@@ -1,0 +1,33 @@
+name: "鍛冶師"
+slug: "kajishi"
+summary: "決まった計画どおりに機能や道具を作る"
+section: "開発"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "codex"
+  model: "gpt-6.1-sol"
+  effort: "high"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "codex"
+  model: "gpt-6.1-sol"
+  effort: "high"
+  backup_automatic: true
+  backup_models:
+  - provider: "claude"
+    model: "claude-opus-5-5"
+skills:
+- superpowers/test-driven-development
+- superpowers/verification-before-completion
+optional_skills: []
+skill_usage:
+- id: superpowers/test-driven-development
+  purpose: 合意済み要求から最小の実装を作り、振る舞いの証拠を残す職務に適合。
+  when: 新機能・振る舞い変更の実装。試作品や設定だけの変更へは無条件に広げない。
+- id: superpowers/verification-before-completion
+  purpose: 役割の指示の『実チェック前にdoneと言わない・未実行をunverifiedとする』を具体化する。
+  when: 完了・commit/push・PR作成の報告前に、実行結果を確認する。
+skill_notes:
+- 言語・フレームワーク固有の実装知識は案件ごとに補う。文書や小さな設定変更に大きな開発手順を一律に課さない。

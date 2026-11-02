@@ -1,0 +1,37 @@
+name: "斥候"
+slug: "sekkou"
+summary: "商談の前に、相手の情報と確かめたい質問をまとめる"
+section: "営業・広報"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "medium"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "medium"
+  backup_automatic: true
+  backup_models:
+  - provider: "codex"
+    model: "gpt-6.1-sol"
+skills:
+- kwp/account-research
+optional_skills:
+- kwp/call-prep
+- kwp/knowledge-synthesis
+skill_usage:
+- id: kwp/account-research
+  purpose: 公開企業情報、ICP適合、disqualifier、日付付きsignalを出典付きで調べる用途に一致。
+  when: 企業調査と適合仮説。private contactや予算などは作らない。
+- id: kwp/call-prep
+  purpose: 過去記録から未回答事項・約束を抽出して次回discovery questionsにできる。
+  when: 商談前の読取・準備資料だけ。連絡やCRM変更は含めない。
+- id: kwp/knowledge-synthesis
+  purpose: 企業調査に使った資料の出典・矛盾・未解決点を整理する。
+  when: 複数資料をEvidence Briefとしてまとめる場合。事実・解釈・不明点は分ける。
+skill_notes:
+- 営業連絡や顧客管理の更新はこの調査役の割り当てに含めない。事実・解釈・不明点を分ける。

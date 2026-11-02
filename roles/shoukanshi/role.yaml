@@ -1,0 +1,34 @@
+name: "召喚士"
+slug: "shoukanshi"
+summary: "新しいエージェント・スキル・ルーティンを設計して作る"
+section: "運営"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "claude"
+  model: "claude-sonnet-5-5"
+  effort: "medium"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "claude"
+  model: "claude-sonnet-5-5"
+  effort: "medium"
+  backup_automatic: true
+  backup_models:
+  - provider: "codex"
+    model: "gpt-6.1-sol"
+skills:
+- anthropics/agent-development
+- anthropics/skill-creator
+optional_skills: []
+skill_usage:
+- id: anthropics/agent-development
+  purpose: 単一責務・起動条件・ツール範囲・出力・例外を含むagent設計と評価に適合。
+  when: エージェントの責務・起動条件・指示・ツール範囲の設計。保存形式と登録方法は利用先アプリに合わせる。
+- id: anthropics/skill-creator
+  purpose: 必要な技能の仕様化・起動条件・比較評価・改善ループを担当させられる。
+  when: 利用者が求めたスキルの作成・改良・比較評価。診断報告だけから新しい役割や定期実行を勝手に作らない。
+skill_notes:
+- 利用先アプリへの登録、定期実行の設定、実設定の読み戻し確認は別途必要。
+- agent-developmentは存在しない検証スクリプトへの参照を含む。必要な起動確認を利用先で用意する。

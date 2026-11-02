@@ -1,0 +1,30 @@
+name: "道化師"
+slug: "doukeshi"
+summary: "できた画面を別の目で見て、遊び心の案を出す（提案だけ）"
+section: "制作"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "high"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "high"
+  backup_automatic: true
+  backup_models:
+  - provider: "codex"
+    model: "gpt-6-astra"
+skills:
+- kwp/design-critique
+optional_skills: []
+skill_usage:
+- id: kwp/design-critique
+  purpose: レビューと代案提示だけを行う役割に直接合う。
+  when: 画面ごとに修正2〜3、遊び案2〜3。強度tagとbrand根拠。code/design file編集なし。
+skill_notes:
+- 批評と代案に限定し、デザインファイル・コード・チケットを変更しない。
+- 画面だけで計測できない動作やアクセシビリティは未確認とする。

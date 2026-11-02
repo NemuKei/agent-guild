@@ -1,0 +1,1358 @@
+schema_version: 1
+checked: '2026-11-01'
+status: source_reviewed_runtime_unverified
+scope: 役割別の導入候補。スキル本体は同梱しない。OpenBot・Mausbotでの実行は未検証。
+selection_rules:
+- roles/*/instructions.mdの担当範囲と発動条件に合うものを選ぶ。
+- SKILL.mdと適用LICENSEを同一の40桁コミットで取得して確認する。
+- 本体がMITまたはApache-2.0の候補を選び、追加のデータ許諾を個別に記録する。
+- 必要なファイル・スクリプト・アプリへの対応方法は候補ごとに確認する。
+skills:
+- id: kwp/stakeholder-update
+  name: stakeholder-update
+  description: 進捗・完了・障害・意思決定・次の節目を読み手に合わせて報告する。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: product-management/skills/stakeholder-update
+  entrypoint: product-management/skills/stakeholder-update/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/product-management/skills/stakeholder-update/SKILL.md
+  license: Apache-2.0
+  license_path: product-management/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/product-management/LICENSE
+  license_scope: 該当plugin配下のLICENSE。recursive treeで選定skill配下に追加LICENSE/NOTICEなしを確認。
+  requires:
+  - 提供された状況情報
+  - '任意: project tracker/chat/meeting transcription/knowledge base MCPと各サービス認証'
+  portability_notes:
+  - CONNECTORS.mdの~~categoryを利用環境のツールへ対応付ける。提供資料だけでも使用できる。
+  - 送信や公開はスキルの割り当てだけでは許可されない。利用先アプリの承認・送信ルールを維持する。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 0fd657418c27c0c3082e73a5c34bd45364800c50
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - daikenja
+- id: kwp/knowledge-synthesis
+  name: knowledge-synthesis
+  description: 複数資料を重複排除して統合し、出典・日付・確度・矛盾を示す。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: enterprise-search/skills/knowledge-synthesis
+  entrypoint: enterprise-search/skills/knowledge-synthesis/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/enterprise-search/skills/knowledge-synthesis/SKILL.md
+  license: Apache-2.0
+  license_path: enterprise-search/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/enterprise-search/LICENSE
+  license_scope: 該当plugin配下のLICENSE。recursive treeで選定skill配下に追加LICENSE/NOTICEなしを確認。
+  requires:
+  - 検索結果または提供資料
+  - '任意: chat/email/cloud storage/knowledge base/project tracker等の検索コネクタと認証'
+  portability_notes:
+  - 検索結果の統合スキルであり、検索手段や深い調査の実装そのものではない。
+  - ~~categoryの出典表記を実際の資料名・URLへ置換する。鮮度だけで信頼性を判定せず、事実・推論・未解決事項の区分は役割の指示で維持する。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: a5e816fb52c4d2055513eeaea446e79b81aa54f2
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - sekkou
+  - tankyuusha
+- id: kwp/roadmap-update
+  name: roadmap-update
+  description: 優先順位・担当・期限・依存関係・障害を整理したロードマップを作成・更新する。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: product-management/skills/roadmap-update
+  entrypoint: product-management/skills/roadmap-update/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/product-management/skills/roadmap-update/SKILL.md
+  license: Apache-2.0
+  license_path: product-management/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/product-management/LICENSE
+  license_scope: 該当plugin配下のLICENSE。recursive treeで選定skill配下に追加LICENSE/NOTICEなしを確認。
+  requires:
+  - 提供された目標・現状・制約
+  - '任意: project tracker MCPと認証'
+  portability_notes:
+  - 提供資料のみで使用できる。CONNECTORS.mdのツールカテゴリ対応が必要。
+  - 本文自身がロードマップと詳細project planを区別している。小さな初回成果物・受入条件はwrite-specと既存役割の指示で補う。固定の容量配分や見積例をユーザー環境の実績とみなさない。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: b879e5b38b2c57a7bb8d45f97261d1e5c81f4b0d
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - gunshi
+  - kishu
+- id: kwp/write-spec
+  name: write-spec
+  description: 問題・目標・対象外・段階的な要件・受入条件・依存関係・未決事項をPRDに整理する。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: product-management/skills/write-spec
+  entrypoint: product-management/skills/write-spec/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/product-management/skills/write-spec/SKILL.md
+  license: Apache-2.0
+  license_path: product-management/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/product-management/LICENSE
+  license_scope: 該当plugin配下のLICENSE。recursive treeで選定skill配下に追加LICENSE/NOTICEなしを確認。
+  requires:
+  - 目標または問題と利用者文脈
+  - '任意: project tracker/knowledge base/design MCPと認証'
+  portability_notes:
+  - 提供資料で動く。質問の量やPRDの長さは軍師の小さな初回成果物・日常判断を止めない方針に合わせる。
+  - プロダクト機能仕様向けで、あらゆる業務計画の完成品ではない。数値目標・期限は根拠がない限り仮置きと明記する。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 183cf053df391e761c21431bc0dfb791b6d52b80
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - gunshi
+- id: kwp/product-competitive-brief
+  name: competitive-brief
+  description: 指定した競合を製品機能・価格・ポジショニングで比較し、自社への影響を整理する。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: product-management/skills/competitive-brief
+  entrypoint: product-management/skills/competitive-brief/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/product-management/skills/competitive-brief/SKILL.md
+  license: Apache-2.0
+  license_path: product-management/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/product-management/LICENSE
+  license_scope: 該当plugin配下のLICENSE。recursive treeで選定skill配下に追加LICENSE/NOTICEなしを確認。
+  requires:
+  - 公開Web検索・ページ読取
+  - '任意: knowledge base/chat MCPと認証'
+  - 対象競合・評価軸・自社の価値提案
+  portability_notes:
+  - 公開情報だけで実施可能。OpenBotではWeb調査手段が別途必要。
+  - 未知の機能をAbsentと判定せず不明と記載する。物見では固定watch list、取得時刻付きスナップショット、差分のみ報告、変化なし、非ログイン、ルーチン作成禁止を追加適用する必要がある。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 05ca7ec4314ec1a73a882562a364726870944cff
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - monomi
+  - tankyuusha
+- id: kwp/account-research
+  name: account-research
+  description: 対象企業の公開情報・最近の動き・自社ICPへの適合・失格条件を出典付きの営業準備資料にする。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: sales/skills/account-research
+  entrypoint: sales/skills/account-research/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/sales/skills/account-research/SKILL.md
+  license: Apache-2.0
+  license_path: sales/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/sales/LICENSE
+  license_scope: 該当plugin配下のLICENSE。recursive treeで選定skill配下に追加LICENSE/NOTICEなしを確認。
+  requires:
+  - 会社名またはdomain
+  - 自社offering/ICP/失格条件
+  - '任意: Web/enrichment/CRMコネクタと認証。資料だけのfallbackあり'
+  portability_notes:
+  - 既存CRMの所有者確認は任意。OpenBotのMCP一覧だけでは営業コネクタが揃うとは限らない。
+  - 最新本文はconnector権限を強調し、他salesスキルへのhandoffを含む。斥候の調査限定・連絡許可・個人情報制限を上位で保持する。未検証のperson/contact/予算/関係を補完しない。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: ea4335aaba62a2c4ffb4b1fcac7bfb0536679f5c
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  support_paths:
+  - sales/CONNECTORS.md
+  checked: '2026-11-01'
+  used_by:
+  - ginyuushijin
+  - sekkou
+- id: kwp/call-prep
+  name: call-prep
+  description: 提供記録から商談前の背景・未回答事項・約束・発見質問を一枚の準備資料へ整理する。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: sales/skills/call-prep
+  entrypoint: sales/skills/call-prep/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/sales/skills/call-prep/SKILL.md
+  license: Apache-2.0
+  license_path: sales/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/sales/LICENSE
+  license_scope: 該当plugin配下のLICENSE。recursive treeで選定skill配下に追加LICENSE/NOTICEなしを確認。
+  requires:
+  - 会議の対象企業・時刻・目的と提供記録
+  - '任意: calendar/CRM/transcript/email/docs/chatコネクタと認証'
+  portability_notes:
+  - files-onlyモードを明記しており連携必須ではない。連携を使う場合はサービス認証、必要により管理者設定が要る。
+  - 会議前準備自体はread-only。メール送信やCRM更新を許可するものではなく、斥候のscopeを維持する。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 7f20d12ff2e87a7769882a80acaf2f87782b8a64
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  support_paths:
+  - sales/CONNECTORS.md
+  checked: '2026-11-01'
+  used_by:
+  - sekkou
+- id: kwp/performance-report
+  name: performance-report
+  description: 広告・メール・各チャネルの指標を期間比較し、変化の仮説と測定可能な次の実験を報告する。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: marketing/skills/performance-report
+  entrypoint: marketing/skills/performance-report/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/marketing/skills/performance-report/SKILL.md
+  license: Apache-2.0
+  license_path: marketing/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/marketing/LICENSE
+  license_scope: 該当plugin配下のLICENSE。recursive treeで選定skill配下に追加LICENSE/NOTICEなしを確認。
+  requires:
+  - キャンペーン指標と目的・期間・比較期間
+  - CSV/表などを読む実行環境
+  - '任意: marketing/product analytics MCPと認証'
+  portability_notes:
+  - 提供CSVや数値だけで使用可能。~~marketing analytics等は実装済ツールへ対応付ける。
+  - 本文の一般ベンチマークやROAS等の定義は実際のexport定義と照合する。広告停止・予算変更・配信設定変更は占星術師の範囲外。因果を断定せず仮説として扱う。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: f282cfba98822d98791478037c68bf24ae650343
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - senseijutsushi
+- id: kwp/explore-data
+  name: explore-data
+  description: 表やファイルの粒度・欠損・重複・型・分布・期間・不自然値をプロファイルする。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: data/skills/explore-data
+  entrypoint: data/skills/explore-data/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/data/skills/explore-data/SKILL.md
+  license: Apache-2.0
+  license_path: data/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/data/LICENSE
+  license_scope: 該当plugin配下のLICENSE。recursive treeで選定skill配下に追加LICENSE/NOTICEなしを確認。
+  requires:
+  - CSV/Excel/Parquet/JSON等の読取と計算環境
+  - '任意: data warehouse MCPと認証'
+  portability_notes:
+  - プロンプト型のSKILLであり実行エンジンや依存ライブラリを同梱しない。warehouseなしのファイルモードあり。
+  - 欠損率等のしきい値はヒューリスティック。通貨・単位・時間帯・attributionの意味はデータ仕様と役割の指示から明示確認する。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: f1e7032d0abee77903fc3abbfdc7646e383d4993
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - senseijutsushi
+- id: kwp/validate-data
+  name: validate-data
+  description: 分析の定義・比較期間・分母・集計・バイアス・結論を点検し、確度と留保を示す。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: data/skills/validate-data
+  entrypoint: data/skills/validate-data/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/data/skills/validate-data/SKILL.md
+  license: Apache-2.0
+  license_path: data/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/data/LICENSE
+  license_scope: 該当plugin配下のLICENSE。recursive treeで選定skill配下に追加LICENSE/NOTICEなしを確認。
+  requires:
+  - 分析・元データ・計算式またはSQLと結果
+  - 数値を再計算できるローカル実行環境
+  - '任意: warehouse/notebook等MCPと認証'
+  portability_notes:
+  - 提供資料の分析レビューで使用できる。ツールの実行結果を得ていない計算を検証済みとしない。
+  - analysisをgit/共有docs保存する一般指示は財務官に転用しない。占星術師では提供export内にscopeを限定する。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 30a1bac41bf9679dc7d96b7ec59a116f03ec0575
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - senseijutsushi
+- id: kwp/reconciliation
+  name: reconciliation
+  description: 帳簿と明細を照合し、差異を時点差・要修正候補・要調査に整理する。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: finance/skills/reconciliation
+  entrypoint: finance/skills/reconciliation/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/finance/skills/reconciliation/SKILL.md
+  license: Apache-2.0
+  license_path: finance/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/finance/LICENSE
+  license_scope: 該当plugin配下のLICENSE。recursive treeで選定skill配下に追加LICENSE/NOTICEなしを確認。
+  requires:
+  - 同一基準日時の帳簿・明細と証憑
+  - ローカルの表/CSV読取・計算環境。外部連携は必須ではない
+  portability_notes:
+  - 管轄固有の会計・税務処理や申告制度への対応は確認していない。米ドル・小切手・企業間取引・企業会計の例は、照合の一般的な整理を助ける範囲で使う。
+  - 本文には仕訳修正案やescalationの一般手順があるが、既存台帳を再解釈・上書き・自動訂正してよい意味ではない。財務官役割の指示の原本不変、専用ローカルフォルダ、外部共有禁止、判断保留の規則を保持する。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 5f212646c3827aa0d2b88137ade6829cb520ec03
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - zaimukan
+- id: pm-skills/pre-mortem
+  name: pre-mortem
+  description: 計画の失敗要因・未検証の前提を洗い出し、着手前に解くリスクと担当・期限を整理する。
+  repo: https://github.com/phuryn/pm-skills
+  commit: 2a12295a7717569baa7be181b4cfebe3ca38a6bb
+  path: pm-execution/skills/pre-mortem
+  entrypoint: pm-execution/skills/pre-mortem/SKILL.md
+  source_url: https://github.com/phuryn/pm-skills/blob/2a12295a7717569baa7be181b4cfebe3ca38a6bb/pm-execution/skills/pre-mortem/SKILL.md
+  license: MIT
+  license_path: LICENSE
+  license_url: https://github.com/phuryn/pm-skills/blob/2a12295a7717569baa7be181b4cfebe3ca38a6bb/LICENSE
+  license_scope: root LICENSE (Copyright 2026 Pawel Huryn)。recursive treeに追加LICENSE/NOTICEなし。
+  requires:
+  - 提供されたPRD/launch plan
+  - '任意: 市場調査のWeb検索'
+  portability_notes:
+  - 製品リリースのリスク確認向け。推奨・見積もり・解釈全般の軽い自己点検を置き換えるものではない。
+  - 14日前・30日以内という例示の期間を固定期限とみなさず、軍師の実際の状況に合わせる。根拠の弱いリスクは推測と明記する。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 3a22d36b4dfac5685ccbc73486686ea6e7df6452
+    license_blob_sha: f6eca502b7f3fd6a3f0b024e4c98a3dcf5611cee
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - gunshi
+- id: pm-skills/release-notes
+  name: release-notes
+  description: 提供されたチケット・変更履歴・仕様から、利用者への影響を明確にしたリリースノートを作る。
+  repo: https://github.com/phuryn/pm-skills
+  commit: 2a12295a7717569baa7be181b4cfebe3ca38a6bb
+  path: pm-execution/skills/release-notes
+  entrypoint: pm-execution/skills/release-notes/SKILL.md
+  source_url: https://github.com/phuryn/pm-skills/blob/2a12295a7717569baa7be181b4cfebe3ca38a6bb/pm-execution/skills/release-notes/SKILL.md
+  license: MIT
+  license_path: LICENSE
+  license_url: https://github.com/phuryn/pm-skills/blob/2a12295a7717569baa7be181b4cfebe3ca38a6bb/LICENSE
+  license_scope: root LICENSE (Copyright 2026 Pawel Huryn)。recursive treeに追加LICENSE/NOTICEなし。
+  requires:
+  - 提供された変更内容・リリース対象・利用者文脈
+  - Markdown読書き
+  - '任意: 製品URLを調べるWeb検索'
+  portability_notes:
+  - Claude型$ARGUMENTSをOpenBotの入力へ対応させる。特定MCP・ログイン必須ではない。
+  - PRDは予定も含むため実装・公開済の証拠と突き合わせる。例示の『3×高速』などを事実として出力しない。公開・配信は別の明示許可が必要。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 148bf1cb176851d13531a54facc207824b22f493
+    license_blob_sha: f6eca502b7f3fd6a3f0b024e4c98a3dcf5611cee
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - kishu
+- id: pm-skills/summarize-meeting
+  name: summarize-meeting
+  description: 会議メモやtranscriptを決定事項・担当・期限・未解決事項の構造化議事録にする。
+  repo: https://github.com/phuryn/pm-skills
+  commit: 2a12295a7717569baa7be181b4cfebe3ca38a6bb
+  path: pm-execution/skills/summarize-meeting
+  entrypoint: pm-execution/skills/summarize-meeting/SKILL.md
+  source_url: https://github.com/phuryn/pm-skills/blob/2a12295a7717569baa7be181b4cfebe3ca38a6bb/pm-execution/skills/summarize-meeting/SKILL.md
+  license: MIT
+  license_path: LICENSE
+  license_url: https://github.com/phuryn/pm-skills/blob/2a12295a7717569baa7be181b4cfebe3ca38a6bb/LICENSE
+  license_scope: root LICENSE (Copyright 2026 Pawel Huryn)。recursive treeに追加LICENSE/NOTICEなし。
+  requires:
+  - 提供された会議メモまたは文字起こし
+  - Markdown読書き。録音自体を扱う場合は別の文字起こし手段
+  portability_notes:
+  - 特定MCP・ログイン不要。$ARGUMENTSと保存先を利用環境へ合わせる。
+  - 欠けている担当・期限・発言を推測で補わない。会議文脈のWeb検索という一般指示は、私的会議の機密情報を外部へ出す理由にならない。外部送信やタスク作成機能はない。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: a103503d8002be02efaff273dcad1777b55f3fd7
+    license_blob_sha: f6eca502b7f3fd6a3f0b024e4c98a3dcf5611cee
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - kishu
+  - shikenkan
+  - shokikan
+- id: kwp/interview-prep
+  name: interview-prep
+  description: 採用職務の4〜6能力に基づく共通質問、行動・状況質問、1〜4の評価基準、面接後の検討テンプレートを作る。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 4fa3cb92e2942d6594200fa8d2c800708e086072
+  path: human-resources/skills/interview-prep
+  entrypoint: human-resources/skills/interview-prep/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/4fa3cb92e2942d6594200fa8d2c800708e086072/human-resources/skills/interview-prep/SKILL.md
+  license: Apache-2.0
+  license_path: LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/4fa3cb92e2942d6594200fa8d2c800708e086072/LICENSE
+  license_scope: 選定コミットのルートLICENSEを適用。配下に別LICENSE・NOTICEがないことを確認。
+  requires:
+  - 職務要件・能力定義・提供された面接記録。MCPやログインは必須ではない。
+  portability_notes:
+  - 採用面接用でありソフトウェア試験のスキルではない。採否や候補者への連絡は試験官の権限に追加しない。
+  - 面接記録の矛盾・不足、職務に無関係な個人特性の排除は既存役割の指示の規則を維持する。
+  - root LICENSEが標準Apache本文の導入コミットに固定。2026-10-28 HEADのSKILLと同一blobであることを確認。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 853cf0f9e4f395c76a21ac55d5c902fcdc8495f6
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  pin_reason: human-resources配下に個別LICENSEがないため、標準Apache-2.0全文を確認できる導入コミットに固定。調査時の最新コミットとSKILL.mdのblobは同じ。
+  checked: '2026-11-01'
+  used_by:
+  - shikenkan
+- id: anthropics/internal-comms
+  name: internal-comms
+  description: 社内報告、進捗・計画・問題、FAQ、リーダー向け更新などを読み手と社内形式に合わせてまとめる。
+  repo: https://github.com/anthropics/skills
+  commit: ca45fc496a3436251f191354091d557da31c15b5
+  path: skills/internal-comms
+  entrypoint: skills/internal-comms/SKILL.md
+  source_url: https://github.com/anthropics/skills/blob/ca45fc496a3436251f191354091d557da31c15b5/skills/internal-comms/SKILL.md
+  license: Apache-2.0
+  license_path: skills/internal-comms/LICENSE.txt
+  license_url: https://github.com/anthropics/skills/blob/ca45fc496a3436251f191354091d557da31c15b5/skills/internal-comms/LICENSE.txt
+  license_scope: スキル単位のLICENSEを確認。
+  requires:
+  - 同梱examples/一式
+  - 依頼の素材と社内書式
+  portability_notes:
+  - Markdown中心でClaude/Codexへ移植しやすい。SKILL.md単体でなくexamplesを含める。
+  - 内容を作る権限と送信権限を混同しない。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 56ea935b74f371bfeb4c7d3c19d5139df866e73b
+    license_blob_sha: 4f881c52d1f72f4cfb720e339e2d35c3058d01a9
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - bunkan
+  - shokikan
+- id: yomiyasu
+  name: yomiyasu
+  description: 意味・条件・数値・言い切りの強さを保ちながらAIが生成した日本語を推敲する。
+  repo: https://github.com/nanaism/yomiyasu
+  commit: 29d67ccb05e370b5958d72920a9cd1aa829dee80
+  path: skills/yomiyasu
+  entrypoint: skills/yomiyasu/SKILL.md
+  source_url: https://github.com/nanaism/yomiyasu/blob/29d67ccb05e370b5958d72920a9cd1aa829dee80/skills/yomiyasu/SKILL.md
+  license: MIT
+  license_path: skills/yomiyasu/LICENSE
+  license_url: https://github.com/nanaism/yomiyasu/blob/29d67ccb05e370b5958d72920a9cd1aa829dee80/skills/yomiyasu/LICENSE
+  license_scope: スキル単位のLICENSEを確認。
+  requires:
+  - Python 3
+  - 同梱scripts/、references/、Unicodeデータ
+  - 原稿・根拠資料へのアクセス
+  portability_notes:
+  - 確認した2.5.0のコミットに固定（結界師が差分を点検済み）。利用者または役割の指示が明示的に推敲を求めたときに使う。
+  - Codex側にもスキル全体を配置しスクリプトパスを解決する。Claudeプラグインの存在だけでバックアップモデル利用可とみなさない。
+  - 配布時はMITに加えて同梱skills/yomiyasu/UNICODE-LICENSE.txt（Unicode-3.0）も保持する。
+  - 全文が検査記録に入る仕様があるため、保存不要など元の指示を保ち、ログの扱いも適用する。
+  - 2.5.0はStep 3で最終稿のファイル保存が標準。保存が不要な依頼では標準入力（run --stdin）と--no-recordを使う扱いを維持する。
+  verification:
+    reviewed_on: '2026-11-02'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 5cca6b8bb495a81bfcefb579d05c0e5f52d4fb1f
+    license_blob_sha: f0d06f87f9b209d47c7f7963321ff71bab68c1e8
+    runtime_tested: false
+  version: 2.5.0
+  additional_licenses:
+  - license: Unicode-3.0
+    path: skills/yomiyasu/UNICODE-LICENSE.txt
+    url: https://github.com/nanaism/yomiyasu/blob/29d67ccb05e370b5958d72920a9cd1aa829dee80/skills/yomiyasu/UNICODE-LICENSE.txt
+    blob_sha: 56da58912807030b451a4700687d5bd02c72d6ed
+    applies_to: 同梱のUnicode由来データ。参照文書の外部引用は出典表示と個別の条件を保持する。
+  packaging_notes:
+  - SKILL.mdに加えscripts/、references/全体（lists/辞書を含む）、MITとUnicodeの両通知を保持する。
+  - 紹介画像・開発用corpus・testsは実行用配布に含める必要はない。プラグインmanifestはアプリごとに扱う。
+  checked: '2026-11-02'
+  used_by:
+  - bunkan
+  - ginyuushijin
+  - kataribe
+  - zoukeishi
+- id: kwp/draft-outreach
+  name: draft-outreach
+  description: 確認した連絡理由、提供価値、1つの依頼を軸に短い営業メールや少数の連絡案を下書きする。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: sales/skills/draft-outreach
+  entrypoint: sales/skills/draft-outreach/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/sales/skills/draft-outreach/SKILL.md
+  license: Apache-2.0
+  license_path: sales/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/sales/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - 宛先・目的・提供価値
+  - 根拠資料または確認できる公開情報
+  - '任意: email/CRM/enrichment接続'
+  - sales/CONNECTORS.md
+  portability_notes:
+  - 初期運用は貼り付け可能な下書き出力。メール送信・sequence登録・CRM変更はスキル導入によって許可されない。
+  - 一律120英単語等は英語向け目安。日本語は役割の指示とyomiyasu、指定channelを優先。
+  - 未確認の個人化を作らず、根拠がなければ一般的な文面にする。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: b58c386f6a3081592331773c6f4e7e240ac8ddcd
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  support_paths:
+  - sales/CONNECTORS.md
+  checked: '2026-11-01'
+  used_by:
+  - ginyuushijin
+- id: kwp/content-creation
+  name: content-creation
+  description: ブログ記事の構成、見出し、媒体別の短文、記事から派生する投稿下書きの作り方を支える。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: marketing/skills/content-creation
+  entrypoint: marketing/skills/content-creation/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/marketing/skills/content-creation/SKILL.md
+  license: Apache-2.0
+  license_path: marketing/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/marketing/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - ブランド資料
+  - 記事の出典素材と測量士の記事brief
+  portability_notes:
+  - LP・メール等の広い原典scopeのうち専門記事と派生短文だけを使う。
+  - 英語の文字数目安、サンプル統計や架空事例を事実として流用しない。プロジェクトの指示ファイル・記事手順・ブランド規定が優先。
+  - user-invocable:falseはClaude由来のmetadata。Codexでの呼び出し方式を確認し、本文ワークフローのみを移植する。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 4ca0b7166414334ee3a118b35e141eadab2f97ec
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - kataribe
+- id: marketingskills/seo-audit
+  name: seo-audit
+  description: crawl/index、速度、見出し・metadata、内部link、内容品質を証拠付きで診断し、修正案の優先順位を付ける。
+  repo: https://github.com/coreyhaines31/marketingskills
+  commit: 88c79f6528a9347420e57ceb1fff9a60de651768
+  path: skills/seo-audit
+  entrypoint: skills/seo-audit/SKILL.md
+  source_url: https://github.com/coreyhaines31/marketingskills/blob/88c79f6528a9347420e57ceb1fff9a60de651768/skills/seo-audit/SKILL.md
+  license: MIT
+  license_path: LICENSE
+  license_url: https://github.com/coreyhaines31/marketingskills/blob/88c79f6528a9347420e57ceb1fff9a60de651768/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - 公開siteを読むweb/browser機能
+  - 同梱references/
+  - '任意: Search Console/analytics/export/SEOツール'
+  portability_notes:
+  - 計測器が未接続の数値は未確認。推奨修正案だけ作り、測量士はsiteを編集しない。
+  - JSON-LD未検出の判断にはrender後DOMまたは検証ツールが必要と本文で注意されている。画面操作が必要なら使い魔へ依頼。
+  - 参照の固定パスを保持し、外部サービスの手順・制約は使用時に公式資料で再確認する。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: e0a41d8c46c06d1e33ce5295c0f303a94d8f6c5b
+    license_blob_sha: 7c48dd638a9ebed49a8ef0c0c4eea90105381cdf
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - sokuryoushi
+- id: marketingskills/ai-seo
+  name: ai-seo
+  description: AI回答での言及・引用、抽出しやすい記事構造、crawler到達性を調べ、AEO/GEOの改善仮説を立てる。
+  repo: https://github.com/coreyhaines31/marketingskills
+  commit: 88c79f6528a9347420e57ceb1fff9a60de651768
+  path: skills/ai-seo
+  entrypoint: skills/ai-seo/SKILL.md
+  source_url: https://github.com/coreyhaines31/marketingskills/blob/88c79f6528a9347420e57ceb1fff9a60de651768/skills/ai-seo/SKILL.md
+  license: MIT
+  license_path: LICENSE
+  license_url: https://github.com/coreyhaines31/marketingskills/blob/88c79f6528a9347420e57ceb1fff9a60de651768/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - 公開webと対象AI回答の観測または提供結果
+  - 同梱references/
+  - '任意: GSC/GA4/Ahrefs/Semrush等'
+  portability_notes:
+  - 調査・監視設計・briefだけに限定する。robots/価格file/schema/llms.txt等の変更や外部投稿は提案に留める。
+  - 本文中の向上率や市場統計は実サイトの成果予測として転記しない。出典・日付・対象範囲を再検証してから使う。
+  - 独自AIファイル等は仕様・効果の確定事項と実験的施策を区別し、順位や引用を保証しない。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: f07379d8aecae63311c62aadc158d9edf06c8fde
+    license_blob_sha: 7c48dd638a9ebed49a8ef0c0c4eea90105381cdf
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - sokuryoushi
+- id: marketingskills/content-strategy
+  name: content-strategy
+  description: 読者の疑問・検索意図・topic clusterを整理し、語り部に渡す記事候補と優先順位を作る。
+  repo: https://github.com/coreyhaines31/marketingskills
+  commit: 88c79f6528a9347420e57ceb1fff9a60de651768
+  path: skills/content-strategy
+  entrypoint: skills/content-strategy/SKILL.md
+  source_url: https://github.com/coreyhaines31/marketingskills/blob/88c79f6528a9347420e57ceb1fff9a60de651768/skills/content-strategy/SKILL.md
+  license: MIT
+  license_path: LICENSE
+  license_url: https://github.com/coreyhaines31/marketingskills/blob/88c79f6528a9347420e57ceb1fff9a60de651768/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - 事業・読者・ブランド文脈
+  - 公開検索または提供keyword資料
+  - 同梱references/
+  portability_notes:
+  - 制作・公開・配信を促す原典の記述は測量士には適用せず、記事briefまでに止める。
+  - 記事briefにはtarget terms、読者、検索意図、見出し骨格、要点、sourcesを付す。検索volumeやrankingを推定で埋めない。
+  - 競合の調査は検索意図と内容gapの検証に限定し、継続競合監視は物見に残す。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 0efc441269144abe5af37603291d860f47a52430
+    license_blob_sha: 7c48dd638a9ebed49a8ef0c0c4eea90105381cdf
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - sokuryoushi
+- id: anthropics/frontend-design
+  name: frontend-design
+  description: 製品・読者・用途に根差した視覚方向、配色、書体、layout、interactionを定めてUIに落とす。
+  repo: https://github.com/anthropics/skills
+  commit: ca45fc496a3436251f191354091d557da31c15b5
+  path: skills/frontend-design
+  entrypoint: skills/frontend-design/SKILL.md
+  source_url: https://github.com/anthropics/skills/blob/ca45fc496a3436251f191354091d557da31c15b5/skills/frontend-design/SKILL.md
+  license: Apache-2.0
+  license_path: skills/frontend-design/LICENSE.txt
+  license_url: https://github.com/anthropics/skills/blob/ca45fc496a3436251f191354091d557da31c15b5/skills/frontend-design/LICENSE.txt
+  license_scope: スキル単位のLICENSEを確認。
+  requires:
+  - 対象プロジェクトと、その指示ファイル（ある場合）
+  - 実装stackの開発環境とdesign brief
+  portability_notes:
+  - Claude専用tool依存の少ないMarkdown。Codexにも本文は移植しやすい。
+  - デザインの作成・変更権限とdeploy/publish権限は別。既存役割の指示のgit方針と公開承認を保持。
+  - 実装前の方向性と実装後critiqueに用い、細かなstyling修正では全workflowを強制しない。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: a5333457c414d20d625f307df945842c0952ecc3
+    license_blob_sha: f433b1a53f5b830a205fd2df78e2b34974656c7b
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - zoukeishi
+- id: ui-ux-pro-max
+  name: ui-ux-pro-max
+  description: local dataを検索し、配色・書体・使いやすさ・accessibility・stack別実装の判断を補強する。
+  repo: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+  commit: 3a13158ff1f32156cbe144108de48eda2ecaed9a
+  path: .claude/skills/ui-ux-pro-max
+  entrypoint: .claude/skills/ui-ux-pro-max/SKILL.md
+  source_url: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/3a13158ff1f32156cbe144108de48eda2ecaed9a/.claude/skills/ui-ux-pro-max/SKILL.md
+  license: MIT
+  license_path: LICENSE
+  license_url: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/3a13158ff1f32156cbe144108de48eda2ecaed9a/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - Python 3（外部Python依存なしとのSKILL記載）
+  - scripts/、data/、references/を含む配布一式
+  portability_notes:
+  - 確認した2.15.0のコミットに固定し、造形師が必要なときに使う候補とする。
+  - ${CLAUDE_PLUGIN_ROOT}はClaude固有。Codex側では同じ配布内容の絶対パスへadapterで対応する必要がある。
+  - SKILLだけのコピーでは検索dataが不足する。フォント等の実assetを使う場合はasset側licenseも確認。
+  verification:
+    reviewed_on: '2026-11-02'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 41f8e2fd7f8c568228d0b55186ebe3f7b4007377
+    license_blob_sha: 1e71cbf26660f31903807d099fe902c098fc7e4c
+    runtime_tested: false
+  version: 2.15.0
+  packaging_notes:
+  - 選定ディレクトリ内のscripts/・data/・references/は実ファイルで完結。SKILL.mdだけを取得しない。
+  - data-provenance.json、google-font-licenses.json等の由来・許諾情報を保持する。
+  - 字体とアイコンはメタデータ。生成UIに実際のフォント・SVG・ライブラリを加える場合、その素材自身のライセンスを確認する。
+  checked: '2026-11-02'
+  used_by:
+  - zoukeishi
+- id: kwp/design-critique
+  name: design-critique
+  description: 画面やscreenshotを使いやすさ、視覚階層、一貫性、accessibilityから批評し、理由と代案を示す。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2d6f7e22dd25593f0f748010430ef86f19659735
+  path: design/skills/design-critique
+  entrypoint: design/skills/design-critique/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2d6f7e22dd25593f0f748010430ef86f19659735/design/skills/design-critique/SKILL.md
+  license: Apache-2.0
+  license_path: LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2d6f7e22dd25593f0f748010430ef86f19659735/LICENSE
+  license_scope: 選定コミットのルートLICENSEを適用。配下に別LICENSE・NOTICEがないことを確認。
+  requires:
+  - 画面のスクリーンショットまたは説明
+  - 提供されたブランド資料
+  - design/CONNECTORS.md
+  - '任意: デザインツールの参照用接続'
+  portability_notes:
+  - 道化師のレビュー・提案専用に適合。code/design file変更、ticket作成、公開を追加しない。
+  - 原典の長い出力templateを既存役割の指示の各画面2〜3修正＋2〜3遊び案、控えめ/ふつう/攻め、brand根拠へ合わせる。
+  - screenshotから計測できないcontrast/動作/読上げは合格と断定しない。必要な操作・測定は使い魔へ依頼。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: b6eaac1535f0a7482e35d91e039239ceb6031157
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  pin_reason: design配下に個別LICENSEがないため、標準Apache-2.0全文を確認できる移行コミットに固定。調査時の最新コミットとSKILL.md・CONNECTORS.mdの内容は同じ。
+  support_paths:
+  - design/CONNECTORS.md
+  checked: '2026-11-01'
+  used_by:
+  - doukeshi
+- id: kwp/draft-response
+  name: draft-response
+  description: 製品・顧客・問題の確認済み情報から顧客への回答下書きを作り、内部メモを分離する。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: customer-support/skills/draft-response
+  entrypoint: customer-support/skills/draft-response/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/customer-support/skills/draft-response/SKILL.md
+  license: Apache-2.0
+  license_path: customer-support/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/customer-support/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - 製品docsと問題証拠、既知のaccount情報
+  - customer-support/CONNECTORS.md
+  - '任意: support/CRM/email/KB読取接続'
+  portability_notes:
+  - 本文は下書きまで。送信は既存役割の指示どおり明示依頼がある時だけ。
+  - 原典の例文にある『確認済・escalate済』や期限は実行/根拠のあるものだけを採用し、refund・policy例外・delivery dateを約束しない。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 3fd6fdc027fedba01c48958a6e962656331df131
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  support_paths:
+  - customer-support/CONNECTORS.md
+  checked: '2026-11-01'
+  used_by:
+  - annainin
+- id: kwp/ticket-triage
+  name: ticket-triage
+  description: 顧客の問題を分類し、影響・緊急度・既知issue・routingと初期返答を整理する。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: customer-support/skills/ticket-triage
+  entrypoint: customer-support/skills/ticket-triage/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/customer-support/skills/ticket-triage/SKILL.md
+  license: Apache-2.0
+  license_path: customer-support/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/customer-support/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - 問題報告、logs、再現手順など
+  - customer-support/CONNECTORS.md
+  - '任意: support/KB/project tracker読取接続'
+  portability_notes:
+  - Bug Triageのサポート窓口部分だけを置換する。codeの根本原因診断とfix実装計画は治癒師などへ渡す。
+  - 原典にあるP1/P2等の既定SLAを組織の約束とみなさない。既知SLAがなければ未確認、外部ticket更新は別の明示依頼。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: d5ebee4105be8ad8a32c6767fb741fb47e44c12a
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  support_paths:
+  - customer-support/CONNECTORS.md
+  checked: '2026-11-01'
+  used_by:
+  - annainin
+- id: kwp/customer-escalation
+  name: customer-escalation
+  description: 再現手順、期待/実際、環境、試したこと、顧客影響と必要な判断を揃えてエスカレーション下書きを作る。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: customer-support/skills/customer-escalation
+  entrypoint: customer-support/skills/customer-escalation/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/customer-support/skills/customer-escalation/SKILL.md
+  license: Apache-2.0
+  license_path: customer-support/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/customer-support/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - issue証拠・再現手順・環境・既知顧客影響
+  - customer-support/CONNECTORS.md
+  - '任意: support/CRM/chat/tracker読取接続'
+  portability_notes:
+  - 社内提出/通知を実行する権限は増やさない。下書きと調査メモの作成まで。
+  - ARR・人数・期限・実施済の対応を補完しない。標準follow-up cadenceは実際の方針がある時だけ使う。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 069eae32c33e22a6efaf420f578c37ec64d9bc76
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  support_paths:
+  - customer-support/CONNECTORS.md
+  checked: '2026-11-01'
+  used_by:
+  - annainin
+- id: superpowers/test-driven-development
+  name: test-driven-development
+  description: 実装前に振る舞いの失敗テストを作り、最小実装で成功させるRED→GREEN→REFACTOR手順。
+  repo: https://github.com/obra/superpowers
+  commit: 2ce8aa15d05bd57213e6f746f953aafb7ded7a8b
+  path: skills/test-driven-development
+  entrypoint: skills/test-driven-development/SKILL.md
+  source_url: https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/test-driven-development/SKILL.md
+  license: MIT
+  license_path: LICENSE
+  license_url: https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - 同一ディレクトリの writing-good-tests.md（本文から必読として参照、treeで存在確認）
+  - 対象リポジトリのテスト実行環境
+  portability_notes:
+  - Markdown主体でCodex/Claude両方へ移植可能。SKILL.mdだけでなくwriting-good-tests.mdを同梱する。
+  - 原文は新機能・修正・リファクタに強制TDDを要求し、試作品・生成コード・設定ファイルの例外は人への質問を要求する。鍛冶師の最小変更方針と両立するよう、実運用の適用範囲を明示する。
+  - 原文の『先に書いたコードを削除』はユーザー既存変更の削除権限を与えない。
+  - 技能を実行した・動作検証したという証拠ではない。本文と同梱物・licenseの調査のみ。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 46838cc9e893c06259e3bdad0fc2425b36242f15
+    license_blob_sha: abf0390320aa14406af7a520b9b0739fdda9bf08
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - chiyushi
+  - kajishi
+- id: superpowers/verification-before-completion
+  name: verification-before-completion
+  description: 完了・修正・テスト成功を、実際のコマンド・終了結果・出力を読んだ根拠に結び付ける。
+  repo: https://github.com/obra/superpowers
+  commit: 2ce8aa15d05bd57213e6f746f953aafb7ded7a8b
+  path: skills/verification-before-completion
+  entrypoint: skills/verification-before-completion/SKILL.md
+  source_url: https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/verification-before-completion/SKILL.md
+  license: MIT
+  license_path: LICENSE
+  license_url: https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - 対象作業を検証できるコマンド、ログ又は出力
+  - 本文に追加の必須ローカル参照ファイルなし
+  portability_notes:
+  - 汎用的なMarkdown skill。ホスト固有MCPは不要。
+  - 原文はfresh verificationを強く要求するため、既存の検証記録がどの状態を検証したかを保持して適用する。ユーザーの承認済みGit操作方針はプロフィールに従う。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 7d45333cc4a49c57a80df6c1fe2fa777a207afbc
+    license_blob_sha: abf0390320aa14406af7a520b9b0739fdda9bf08
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - chiyushi
+  - kajishi
+- id: superpowers/systematic-debugging
+  name: systematic-debugging
+  description: 再現、最近の変更、境界ごとの観測、単一仮説の最小検証を経て原因を特定し、単一修正と回帰検証へ進む。
+  repo: https://github.com/obra/superpowers
+  commit: 2ce8aa15d05bd57213e6f746f953aafb7ded7a8b
+  path: skills/systematic-debugging
+  entrypoint: skills/systematic-debugging/SKILL.md
+  source_url: https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/systematic-debugging/SKILL.md
+  license: MIT
+  license_path: LICENSE
+  license_url: https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - root-cause-tracing.md
+  - defense-in-depth.md
+  - condition-based-waiting.md
+  - 補助ファイル find-polluter.sh と condition-based-waiting-example.ts（treeで存在確認、必要時のみ）
+  - superpowers:test-driven-development（修正フェーズから参照）
+  - superpowers:verification-before-completion（成功報告前に参照）
+  - 再現用コード・ログ・対象テスト環境
+  portability_notes:
+  - 関連skillは同じ固定commitで提供する。単体SKILL.mdをコピーしただけでは参照が欠ける。
+  - デバッグ・原因調査用。一般PRレビューや大規模仕様設計には常用しない。
+  - 原文は3回以上失敗時にアーキテクチャを再検討して相談する停止条件を持つ。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 62fc752aaef59a8bbed5d305f4cadc60f8ae07ed
+    license_blob_sha: abf0390320aa14406af7a520b9b0739fdda9bf08
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - chiyushi
+- id: wshobson/code-review-excellence
+  name: code-review-excellence
+  description: 変更の意図、設計、ロジック、境界条件、テストを順に確認し、必須修正と任意提案を区別する一般コードレビュー。
+  repo: https://github.com/wshobson/agents
+  commit: 7e2fb559cf4b824b27f1fec49fe88f7511066d26
+  path: plugins/developer-essentials/skills/code-review-excellence
+  entrypoint: plugins/developer-essentials/skills/code-review-excellence/SKILL.md
+  source_url: https://github.com/wshobson/agents/blob/7e2fb559cf4b824b27f1fec49fe88f7511066d26/plugins/developer-essentials/skills/code-review-excellence/SKILL.md
+  license: MIT
+  license_path: LICENSE
+  license_url: https://github.com/wshobson/agents/blob/7e2fb559cf4b824b27f1fec49fe88f7511066d26/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - references/review-techniques.md（本文を取得・確認）
+  - references/review-patterns.md（本文を取得・確認）
+  - 差分・呼出し元・関連テストへの読取アクセス
+  portability_notes:
+  - Markdown主体。plugin全体をインストールせずこのskillディレクトリとLICENSEを取り込める。
+  - 一般レビューの教材的ガイドでもあるため、鑑定士役割の指示の『具体的trigger/consequenceがある指摘だけ』『任意style提案は分離』『原則編集しない』を優先する。
+  - 原文のApprove/Request Changesはレビュー結果の形式であり、GitHubにレビューを投稿する外部操作権限を与えない。
+  - 安全性チェックリストを含むが、リポジトリ脅威分析・専門的security監査を完全に置き換えるものではない。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 7ffef3d96996eaaa6ee7e1d17dd5ed7681969bb1
+    license_blob_sha: 326f0a55c96e672fedf9d807ca043c00df05ba0e
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - kanteishi
+- id: openai/security-threat-model
+  name: security-threat-model
+  description: 実コードに根拠を置き、資産・信頼境界・攻撃者能力・悪用経路・優先度付き緩和策を脅威モデルにまとめる。
+  repo: https://github.com/openai/skills
+  commit: 49f948faa9258a0c61caceaf225e179651397431
+  path: skills/.curated/security-threat-model
+  entrypoint: skills/.curated/security-threat-model/SKILL.md
+  source_url: https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model/SKILL.md
+  license: Apache-2.0
+  license_path: skills/.curated/security-threat-model/LICENSE.txt
+  license_url: https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model/LICENSE.txt
+  license_scope: スキル単位のLICENSEを確認。
+  requires:
+  - references/prompt-template.md（必須出力契約）
+  - references/security-controls-and-assets.md（必要部分のみ）
+  - 対象repoのソースと運用・公開範囲・認証・データに関する前提
+  portability_notes:
+  - 脅威モデル・悪用経路・AppSec分析をユーザーが明示的に求めた場合だけ起動。一般のarchitecture説明やコードレビューには起動しない。
+  - ファイル名・ツール名をホストに合わせればClaudeでも利用可能。
+  - 原文のStep 6は前提をユーザーに確認し、最終報告前に回答を待つ。既に提示・確認済みの前提は再質問しないよう運用整理が必要。
+  - 個別skillディレクトリにApache-2.0 LICENSE.txtがある。repo全体の一括license判定ではない。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: abd3c1c95d49c4e0e0664f198f4bf168c6291aec
+    license_blob_sha: 13e25df86ce06eb6488e6a6bc5c5847f5dedc352
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - kekkaishi
+- id: openai/security-best-practices
+  name: security-best-practices
+  description: Python・JavaScript/TypeScript・Goと対応frameworkの安全な実装・セキュリティレビューを、同梱参照資料で点検する。
+  repo: https://github.com/openai/skills
+  commit: 49f948faa9258a0c61caceaf225e179651397431
+  path: skills/.curated/security-best-practices
+  entrypoint: skills/.curated/security-best-practices/SKILL.md
+  source_url: https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices/SKILL.md
+  license: Apache-2.0
+  license_path: skills/.curated/security-best-practices/LICENSE.txt
+  license_url: https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices/LICENSE.txt
+  license_scope: スキル単位のLICENSEを確認。
+  requires:
+  - references/golang-general-backend-security.md
+  - references/javascript-express-web-server-security.md
+  - references/javascript-general-web-frontend-security.md
+  - references/javascript-jquery-web-frontend-security.md
+  - references/javascript-typescript-nextjs-web-server-security.md
+  - references/javascript-typescript-react-web-frontend-security.md
+  - references/javascript-typescript-vue-web-frontend-security.md
+  - references/python-django-web-server-security.md
+  - references/python-fastapi-web-server-security.md
+  - references/python-flask-web-server-security.md
+  - 参照ディレクトリは保持し、対象stackに該当するファイルだけ読む
+  portability_notes:
+  - 明示的なsecurity best practices/安全な実装/セキュリティレビュー要求のみ。一般レビュー、debugging、非securityタスクでは起動禁止というfrontmatter。
+  - 対応言語はPython、JavaScript/TypeScript、Go。Rust/C/C++等を包括的にレビューできると扱わない。
+  - 鑑定士の『信頼境界を越える変更なら起動』だけでは原文triggerを満たさない。明示的なsecurity依頼へ切り分ける場合の条件付き候補。
+  - 個別skill LICENSE.txtのApache-2.0を確認。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 45ccbd8d671c4c4cc3e7e0645a16a3f80ec50de7
+    license_blob_sha: 13e25df86ce06eb6488e6a6bc5c5847f5dedc352
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - kanteishi
+  - kekkaishi
+- id: anthropics/agent-development
+  name: agent-development
+  description: エージェントの責務、起動条件、境界、ツール、システムプロンプト、期待出力と起動テストを設計する。
+  repo: https://github.com/anthropics/claude-plugins-official
+  commit: a7ba5b93db0c7c8d17f3f1d25853adca79598a1a
+  path: plugins/plugin-dev/skills/agent-development
+  entrypoint: plugins/plugin-dev/skills/agent-development/SKILL.md
+  source_url: https://github.com/anthropics/claude-plugins-official/blob/a7ba5b93db0c7c8d17f3f1d25853adca79598a1a/plugins/plugin-dev/skills/agent-development/SKILL.md
+  license: Apache-2.0
+  license_path: plugins/plugin-dev/LICENSE
+  license_url: https://github.com/anthropics/claude-plugins-official/blob/a7ba5b93db0c7c8d17f3f1d25853adca79598a1a/plugins/plugin-dev/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - references/system-prompt-design.md
+  - references/triggering-examples.md
+  - references/agent-creation-system-prompt.md
+  - examples/agent-creation-prompt.md
+  - examples/complete-agent-examples.md
+  - scripts/validate-agent.sh（Bashと一般的なUnixテキスト処理コマンド）
+  - 本文はscripts/test-agent-trigger.shにも言及するが、固定commitのtreeに存在しない
+  portability_notes:
+  - Claude Codeのプラグイン形式を前提にした設計資料。利用先アプリの役割ファイル・モデル名・ツール指定へ変換する必要がある。
+  - エージェントや定期実行を利用先アプリへ登録する機能は含まれない。登録後は実設定を読み戻して確認する。
+  - scripts/test-agent-trigger.shへの参照があるが、固定コミットに当該ファイルはない。起動確認は利用先アプリで別途実施する。
+  - 適用ライセンスはplugins/plugin-dev/LICENSE。公開元の別製品まで同じ条件とは扱わない。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: f4ea78d89bcee2febcce2285d9d41b3d17df3656
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - shoukanshi
+- id: anthropics/skill-creator
+  name: skill-creator
+  description: 用途・起動条件・出力を定義し、skillを下書き、テスト、比較評価、改善して再利用可能な形にまとめる。
+  repo: https://github.com/anthropics/skills
+  commit: ca45fc496a3436251f191354091d557da31c15b5
+  path: skills/skill-creator
+  entrypoint: skills/skill-creator/SKILL.md
+  source_url: https://github.com/anthropics/skills/blob/ca45fc496a3436251f191354091d557da31c15b5/skills/skill-creator/SKILL.md
+  license: Apache-2.0
+  license_path: skills/skill-creator/LICENSE.txt
+  license_url: https://github.com/anthropics/skills/blob/ca45fc496a3436251f191354091d557da31c15b5/skills/skill-creator/LICENSE.txt
+  license_scope: スキル単位のLICENSEを確認。
+  requires:
+  - agents/grader.md
+  - agents/comparator.md
+  - agents/analyzer.md
+  - references/schemas.md
+  - assets/eval_review.html
+  - eval-viewer/generate_review.py と eval-viewer/viewer.html
+  - scripts/aggregate_benchmark.py, generate_report.py, improve_description.py, package_skill.py, quick_validate.py, run_eval.py, run_loop.py, utils.py, __init__.py
+  - Python 3。quick_validate.pyはPyYAMLをimportする（取得確認）。
+  - 評価の並列実行にはsubagent能力。description最適化にはclaude -p CLIと既存Claude Code認証（ソース確認）。
+  portability_notes:
+  - skillの作成・評価用で、OpenBotエージェントや定期routineを直接作成するskillではない。
+  - 基本の設計・テスト・改善ループは移植可能。Claude CLIを用いるtrigger最適化やホスト特有の表示・package手順は利用可否を確認する。
+  - フォルダ一式を同梱し、Python依存を宣言する。本文のみの導入では評価viewerとscriptsが欠ける。
+  - Claude CLI最適化scriptの環境変数調整を含む実行手順は本調査では実行していない。ホストの認証・sandbox制限を優先する。
+  - 個別LICENSE.txtはApache-2.0。anthropics/skillsの文書系skillsがsource-availableであることをこのskillへ混同しない。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 65b3a402dbd09b8e83f9d637c6b553875189085c
+    license_blob_sha: 4f881c52d1f72f4cfb720e339e2d35c3058d01a9
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - renkinjutsushi
+  - shoukanshi
+- id: workflow-sop-builder
+  name: workflow-sop-builder
+  description: 繰り返す人の業務をtrigger・入力・出力・担当・判断・例外・検証に分解し、SOPと小さな自動化の引継ぎ条件に落とす。
+  repo: https://github.com/Gayaya999/workflow-sop-builder
+  commit: 96756a36dcbf61f4a87e9ccca53b932a2556f369
+  path: .
+  entrypoint: SKILL.md
+  source_url: https://github.com/Gayaya999/workflow-sop-builder/blob/96756a36dcbf61f4a87e9ccca53b932a2556f369/SKILL.md
+  license: MIT
+  license_path: LICENSE
+  license_url: https://github.com/Gayaya999/workflow-sop-builder/blob/96756a36dcbf61f4a87e9ccca53b932a2556f369/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - references/intake-fields.md
+  - references/interactive-builder.md
+  - references/plan-mode-wizard.md
+  - references/automation-decision-matrix.md
+  - references/codex-handoff-format.md
+  - references/codex-automation.md
+  - references/method-library.md
+  - references/analysis-rubric.md
+  - references/sop-template.md
+  - assets/sop-template.md
+  - assets/codex-prompt-template.md
+  - scripts/validate_sop.py（任意、Python3標準libraryのみのimportを確認）
+  portability_notes:
+  - 業務定義・SOP作成部分はホスト非依存。Codex automationの名称・保存先・handoffはOpenBotの実機能へ合わせる必要がある。
+  - 同梱codex-automation.mdは、SOP、automation handoff、実際のautomation creationを区別し、SOP作成で稼働したと主張しないよう明記している。
+  - validatorは英語の固定見出しをregexで確認するだけ。日本語見出しに翻訳するとそのままでは判定できず、実際の業務品質を検証するものでもない。
+  - この調査では本文・license・依存ファイル存在・一部参照とscriptを確認しただけで、導入や実行・品質評価はしていない。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 525bc228483bf77ab3663ea3c92cb9f4531efd89
+    license_blob_sha: 3539a1aac7ff124d81bac92b8137d7d62221034a
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - renkinjutsushi
+- id: blender-game-skills/blender-image-to-3d
+  name: Blender image to 3D
+  description: 見本画像を基準に、形・骨格・動き・GLB/FBX書き出しを段階ごとに比較確認する。
+  repo: https://github.com/majidmanzarpour/blender-game-skills
+  commit: f0ef29385a03de139957e6f700b801cdc00b7e29
+  path: skills/blender-image-to-3d
+  entrypoint: skills/blender-image-to-3d/SKILL.md
+  source_url: https://github.com/majidmanzarpour/blender-game-skills/blob/f0ef29385a03de139957e6f700b801cdc00b7e29/skills/blender-image-to-3d/SKILL.md
+  license: MIT
+  license_path: LICENSE
+  license_url: https://github.com/majidmanzarpour/blender-game-skills/blob/f0ef29385a03de139957e6f700b801cdc00b7e29/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - Blender 4.2以上（上流は5.2まで使用と記載）
+  - PythonとPillow
+  - スキルフォルダ全体（scripts・references・assetsを含む）
+  portability_notes:
+  - headless bpyを中心に使える。MCP接続は任意。
+  - 既存モデルの修正では全工程の作り直しを強制しない。利用者が選んだ参照画像と、既存の見た目を保つ指示を優先する。
+  - 元ファイルを保存し作業用コピーで確認する。数値の許容差やゲーム向け規模の既定値は制作物の要件に合わせて決める。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: b5736aa9ed3d7aeafa354a326a77e298603921d4
+    license_blob_sha: 0e7cfcfa43d5da2dc6a31768afcd95525fd3000c
+    runtime_tested: false
+  maturity: community_candidate_runtime_unverified
+  checked: '2026-11-01'
+  used_by:
+  - choukokushi
+- id: vercel/agent-browser
+  name: agent-browser
+  description: ブラウザの表示を確認し、要素を操作し、操作後の状態を確かめるCLI用スキル。
+  repo: https://github.com/vercel-labs/agent-browser
+  commit: 5868f7c05020e047c00e68e4abf9253cce864f41
+  path: skills/agent-browser
+  entrypoint: skills/agent-browser/SKILL.md
+  source_url: https://github.com/vercel-labs/agent-browser/blob/5868f7c05020e047c00e68e4abf9253cce864f41/skills/agent-browser/SKILL.md
+  license: Apache-2.0
+  license_path: LICENSE
+  license_url: https://github.com/vercel-labs/agent-browser/blob/5868f7c05020e047c00e68e4abf9253cce864f41/LICENSE
+  license_scope: 記載した適用LICENSEを同一コミットで確認。
+  requires:
+  - agent-browser CLI 0.41.1（固定コミットのpackage.json）
+  - CLIの実行環境と対応ブラウザ
+  - 導入用SKILL.mdに加えCLI同梱のskill-data/core（CLIから読み出す本文）
+  - 'package.json engines: Node >=24.0.0（npm経由の導入時）、pnpm >=11.0.0（ソースビルド時）'
+  portability_notes:
+  - 公開SKILL.mdは短い入口で、本文はCLIから読み出す。ファイル1枚だけでは使えない。
+  - 利用アプリの操作ツールを優先し、代替の操作方法が必要なときだけ利用する。
+  - 認証情報の入力・外部送信・アカウント変更は使い魔の既存境界を守る。CLIを追加しても権限は増やさない。
+  - 一般のmacOSアプリ全体を操作する道具ではない。Electronは別の専用手順が必要。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 67e8a49ad8d8e5874b9e3a5d802df68d5e5e7d76
+    license_blob_sha: 8226d363f88a734e52cc79ead7a5588cc55e76f7
+    runtime_tested: false
+  maturity: runtime_unverified
+  runtime_instruction:
+    path: skill-data/core/SKILL.md
+    source_url: https://github.com/vercel-labs/agent-browser/blob/5868f7c05020e047c00e68e4abf9253cce864f41/skill-data/core/SKILL.md
+    blob_sha: 0788daa759b2b7da95050b7c60ebf7167a53444c
+    note: entrypointは案内用。CLIが読む実際の操作手順と補助資料・実行環境を別途用意する。
+  checked: '2026-11-01'
+  used_by:
+  - tsukaima
+- id: openai/screenshot
+  name: Screenshot Capture
+  description: アプリ専用の画面取得で足りないときに、OSの画面・ウィンドウを画像として記録する。
+  repo: https://github.com/openai/skills
+  commit: 49f948faa9258a0c61caceaf225e179651397431
+  path: skills/.curated/screenshot
+  entrypoint: skills/.curated/screenshot/SKILL.md
+  source_url: https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/screenshot/SKILL.md
+  license: Apache-2.0
+  license_path: skills/.curated/screenshot/LICENSE.txt
+  license_url: https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/screenshot/LICENSE.txt
+  license_scope: スキル単位のLICENSEを確認。
+  requires:
+  - Python3
+  - スキル同梱scripts一式
+  - macOSでは画面収録許可とSwift helper、WindowsではPowerShell、Linuxでは対応する画面取得ツール
+  portability_notes:
+  - 画面取得だけを補う。クリック操作や判断を代替しない。
+  - 専用の画面取得手段があるときはそちらを優先。権限が不足する場合に自動で権限を広げない。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 1d967bfb1d7d38874147b5810f2a19677bc3161b
+    license_blob_sha: 13e25df86ce06eb6488e6a6bc5c5847f5dedc352
+    runtime_tested: false
+  maturity: runtime_unverified
+  checked: '2026-11-01'
+  used_by:
+  - tsukaima
+- id: superpowers/dispatching-parallel-agents
+  name: dispatching-parallel-agents
+  repo: https://github.com/obra/superpowers
+  commit: 2ce8aa15d05bd57213e6f746f953aafb7ded7a8b
+  path: skills/dispatching-parallel-agents
+  entrypoint: skills/dispatching-parallel-agents/SKILL.md
+  license: MIT
+  license_path: LICENSE
+  source_url: https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/dispatching-parallel-agents/SKILL.md
+  license_url: https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/LICENSE
+  license_scope: 同一コミットのルートLICENSEを確認。
+  description: 独立した仕事を分け、背景・制約・期待する成果を揃えて担当者へ委任し、結果を統合する。
+  requires:
+  - 複数のエージェントへ仕事を依頼し、結果を受け取る機能
+  portability_notes:
+  - 実装例はコードの不具合調査が中心。一般業務では役割・受け渡し・検証方法を用途に合わせる。
+  - 独立しない仕事や同じファイルの編集を並列にしない。検証の範囲は作業の規模に合わせる。
+  - 他アプリのエージェントを直接発見・呼び出す機能は含まれない。呼出し方法と状態管理は利用先アプリに合わせる。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 3fa091b348bbe0a18eaa0e17e9092c97f7005cbe
+    license_blob_sha: abf0390320aa14406af7a520b9b0739fdda9bf08
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - daikenja
+- id: kwp/journal-entry
+  name: journal-entry
+  description: 証憑・明細から仕訳案、計算根拠、確認項目を作る。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: finance/skills/journal-entry
+  entrypoint: finance/skills/journal-entry/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/finance/skills/journal-entry/SKILL.md
+  license: Apache-2.0
+  license_path: finance/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/finance/LICENSE
+  license_scope: 同一コミットの該当プラグイン配下のLICENSEを確認。
+  requires:
+  - 利用者の管轄・勘定科目・対象期間・既存の会計方針
+  - 証憑、残高、補助明細などの資料
+  - finance/CONNECTORS.md。外部会計システムへの接続は任意
+  portability_notes:
+  - 仕訳案と転記手順を作る技能で、台帳の転記処理や管轄固有の税務対応を実装していない。
+  - 見積額・償却・収益認識・自動反転などの例を無条件に適用しない。元資料と利用者の会計方針・作業権限を確認する。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: c152f027d308be0138622f4962c1da1af2483d1e
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  support_paths:
+  - finance/CONNECTORS.md
+  checked: '2026-11-01'
+  used_by:
+  - zaimukan
+- id: kwp/statistical-analysis
+  name: statistical-analysis
+  description: 記述統計、傾向、異常値、仮説検定と結果の不確実性を整理する。
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  commit: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  path: data/skills/statistical-analysis
+  entrypoint: data/skills/statistical-analysis/SKILL.md
+  source_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/data/skills/statistical-analysis/SKILL.md
+  license: Apache-2.0
+  license_path: data/LICENSE
+  license_url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/data/LICENSE
+  license_scope: 同一コミットの該当プラグイン配下のLICENSEを確認。
+  requires:
+  - 分析対象データと取得方法・実験条件
+  - 計算環境。例示コードを使う場合はPythonとpandas等
+  portability_notes:
+  - データ品質確認の代わりにはしない。標本の取り方、独立性、検定の前提、交絡、多重比較を点検する。
+  - 本文の判断例や既定閾値をすべてのデータに機械的に適用しない。推定と検定は実際に計算して確認する。
+  verification:
+    reviewed_on: '2026-11-01'
+    skill_body_reviewed: true
+    license_file_reviewed: true
+    skill_blob_sha: 59cc87de24a0c1b2b5b1d7ba2d8d10eb314a6557
+    license_blob_sha: d645695673349e3947e8e5ae42332d0ac3164cd7
+    runtime_tested: false
+  checked: '2026-11-01'
+  used_by:
+  - senseijutsushi

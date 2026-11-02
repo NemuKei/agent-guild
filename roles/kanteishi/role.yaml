@@ -1,0 +1,34 @@
+name: "鑑定士"
+slug: "kanteishi"
+summary: "変更を出す前に不具合を探す"
+section: "開発"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "codex"
+  model: "gpt-6.1-sol"
+  effort: "high"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "codex"
+  model: "gpt-6.1-sol"
+  effort: "high"
+  backup_automatic: true
+  backup_models:
+  - provider: "claude"
+    model: "claude-opus-5-5"
+skills:
+- wshobson/code-review-excellence
+optional_skills:
+- openai/security-best-practices
+skill_usage:
+- id: wshobson/code-review-excellence
+  purpose: 変更意図とコード・境界条件・テストを確認し、必須指摘と任意提案を区別する一般レビューに適合。
+  when: PR/diffレビュー。具体的な再現条件と影響を持つfindingに絞る役割の指示を優先。
+- id: openai/security-best-practices
+  purpose: 一般reviewからsecurity依頼を明確に切り出した場合に限る。
+  when: ユーザーが明示的にsecurityレビューを求め、対象がPython/JS/TS/Goの場合のみ。信頼境界を跨ぐという事情だけでは起動条件を満たさない。
+skill_notes:
+- security-best-practicesは明示的な安全性レビューの依頼が条件。信頼境界を跨ぐ変更というだけでは自動起動しない。
+- 一般レビューでは具体的な根拠・影響・再現条件を持つ指摘に絞る。

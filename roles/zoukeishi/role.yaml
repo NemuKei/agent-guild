@@ -1,0 +1,44 @@
+name: "造形師"
+slug: "zoukeishi"
+summary: "画面やLPの見た目・使い勝手・文章を形にする"
+section: "制作"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "medium"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "medium"
+  backup_automatic: true
+  backup_models:
+  - provider: "codex"
+    model: "gpt-6.1-sol"
+  skill_overrides:
+  - skill: anthropics/frontend-design
+    action: use_existing_if_available
+    existing_skill: distinctive-frontend-design
+    fallback: use_catalog_skill
+skills:
+- anthropics/frontend-design
+- yomiyasu
+optional_skills:
+- ui-ux-pro-max
+skill_usage:
+- id: anthropics/frontend-design
+  purpose: 製品と利用者に合う視覚方向を定め、画面やLPの見た目・使い勝手に落とす。
+  when: 新規の画面や大きな再設計を行うとき。既存のデザイン規則と実装環境を確認し、小さな修正に全工程を強制しない。
+- id: yomiyasu
+  purpose: 意味と条件を保って日本語本文を推敲する。
+  when: 日本語の推敲を依頼されたとき、または役割の指示で求められた最終推敲。数値・出典・主張の強さを保つ。
+- id: ui-ux-pro-max
+  purpose: ローカルの設計資料を検索し、UIの判断を補助する。
+  when: 配色/書体/interaction/stack guideline検索。
+skill_notes:
+- frontend-designで視覚方向を定め、ui-ux-pro-maxは必要な設計資料を調べる補助に使う。
+- 文字・色・余白等の既存ルールを保持する。外部の字体・画像・ライブラリにはそれぞれの利用条件がある。
+- OpenBotで既存スキルを使う条件はopenbot.skill_overridesに記録。存在・用途・利用条件を確認できなければ共通候補を使う。

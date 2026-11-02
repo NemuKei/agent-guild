@@ -1,0 +1,34 @@
+name: "財務官"
+slug: "zaimukan"
+summary: "帳簿、月の締め、申告の準備"
+section: "企画・調査"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "high"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "high"
+  backup_automatic: true
+  backup_models:
+  - provider: "codex"
+    model: "gpt-6.1-sol"
+skills: []
+optional_skills:
+- kwp/reconciliation
+- kwp/journal-entry
+skill_usage:
+- id: kwp/reconciliation
+  purpose: 金額や相手先を創作せず帳簿と証憑・明細の不一致を整理する限定用途で役立つ。
+  when: 米国の会社の月次決算を前提とし、日本の個人事業（青色申告）とは前提が違うため、実際の帳簿で小さく試すまでは条件付き。一般的な残高・明細照合と差異候補の下書きに限り、管轄固有の会計・税務判断や仕訳の自動変更には使わない。
+- id: kwp/journal-entry
+  purpose: 根拠資料に結び付いた仕訳案と確認項目を作る。
+  when: 米国の会社の月次決算を前提とし、日本の個人事業（青色申告）とは前提が違うため、実際の帳簿で小さく試すまでは条件付き。管轄・勘定科目・会計期間・既存方針を確認できた場合の仕訳案に限る。台帳への反映は作業フォルダの指示と権限に従う。
+skill_notes:
+- 管轄固有の会計・税務処理、申告制度、自動仕訳への対応は確認していない。原資料と根拠を優先する。
+- 作業フォルダの指示、原本保持、台帳の変更制限、版管理・クラウド保存・外部共有の制限を引き継ぐ。

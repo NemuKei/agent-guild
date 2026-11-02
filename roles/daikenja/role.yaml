@@ -1,0 +1,34 @@
+name: "大賢者"
+slug: "daikenja"
+summary: "差配役。依頼を受けて担当に振り分け、結果をまとめて報告する"
+section: "運営"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "high"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "high"
+  backup_automatic: true
+  backup_models:
+  - provider: "codex"
+    model: "gpt-6.1-sol"
+skills: []
+optional_skills:
+- superpowers/dispatching-parallel-agents
+- kwp/stakeholder-update
+skill_usage:
+- id: superpowers/dispatching-parallel-agents
+  purpose: 仕事を切り分け、背景と制約を揃えて専門担当へ渡す役割に合う。
+  when: OpenBotでは、チームメイトへの依頼とチャンネルの振り分けを優先する。試してから主候補にするかを決める。Claude Code内部の下請けエージェントを並列に動かす前提のため、振り分け方が二重にならないか確認する。互いに独立した仕事が複数ある場合だけ並列に委任し、依存のある仕事は順番に進める。
+- id: kwp/stakeholder-update
+  purpose: 進捗と判断待ちを、相手に合う報告へまとめる。
+  when: 関係者向けの進捗報告を求められたとき。作業状況の正本はプロジェクトの課題管理に置く。
+skill_notes:
+- 作業状況は役割の指示にある課題管理を正本にする。別のTASKS.mdを自動で作らない。
+- メンバーの呼出し・進捗取得は利用先アプリの機能へ対応させる。

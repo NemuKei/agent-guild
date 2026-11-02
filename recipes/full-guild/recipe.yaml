@@ -1,0 +1,26 @@
+name: "full-guild"
+summary: "差配役1人と、運営・企画・調査・制作・開発・営業・広報の25の専門家で回すチーム"
+leader: "daikenja"
+roles: ["daikenja", "denrei", "tsukaima", "shoukanshi", "renkinjutsushi", "shokikan",
+        "gunshi", "tankyuusha", "senseijutsushi", "zaimukan", "sokuryoushi", "monomi",
+        "zoukeishi", "choukokushi", "doukeshi", "kataribe", "bunkan",
+        "kajishi", "kanteishi", "chiyushi", "kekkaishi", "kishu",
+        "sekkou", "ginyuushijin", "annainin", "shikenkan"]
+handoffs:
+  - {from: "daikenja", to: "chiyushi", when: "不具合の原因が未特定なら治癒師に調査を任せる"}
+  - {from: "chiyushi", to: "daikenja", when: "原因調査の結果を返し、差配役が別の見方での確認と修正の担当を決める"}
+  - {from: "daikenja", to: "*", when: "依頼を受けたら、いちばん合う担当に振る"}
+  - {from: "gunshi", to: "kajishi", when: "計画が決まったら作る"}
+  - {from: "kajishi", to: "kanteishi", when: "作り終えたら、実装とは別のレビュー役が細かく不具合を探す"}
+  - {from: "kanteishi", to: "daikenja", when: "レビューの指摘を差配役へ返し、今直す／後でよい／直さない（やりすぎ）に仕分ける"}
+  - {from: "daikenja", to: "kajishi", when: "仕分けた指摘のうち、今直すものだけを渡して修正する"}
+  - {from: "chiyushi", to: "kanteishi", when: "直し終えたら確かめる"}
+  - {from: "sokuryoushi", to: "kataribe", when: "記事の設計書ができたら書く"}
+  - {from: "zoukeishi", to: "doukeshi", when: "画面ができたら別の目で見る"}
+  - {from: "*", to: "daikenja", when: "結果は差配役に返し、差配役がまとめて報告する"}
+rules:
+  - "振り分けと取りまとめは差配役だけが行う"
+  - "設計・計画→実装→実装とは別のレビュー役による詳細確認→差配役の仕分け→必要な修正の順で進める"
+  - "条件が絡むバグは、調査→別の見方で確認→修正→レビュー→差配役の仕分けの順で進める"
+  - "この編成では治癒師が不具合の原因調査を担う"
+  - "取り消せない操作・外に出す操作・お金の操作は、持ち主の一言があるまでしない"

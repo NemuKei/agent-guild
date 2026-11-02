@@ -1,0 +1,38 @@
+name: "軍師"
+slug: "gunshi"
+summary: "目標を計画に落とす。範囲・前提・次の一歩を決める"
+section: "企画・調査"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "medium"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "claude"
+  model: "claude-opus-5-5"
+  effort: "medium"
+  backup_automatic: true
+  backup_models:
+  - provider: "codex"
+    model: "gpt-6.1-sol"
+skills:
+- kwp/write-spec
+- kwp/roadmap-update
+optional_skills:
+- pm-skills/pre-mortem
+skill_usage:
+- id: kwp/write-spec
+  purpose: 目的、対象外、段階分け、受入条件、未決事項を明文化できる。
+  when: 機能・プロダクト寄りの計画設計。業務全体の計画へは用語・粒度を調整。
+- id: kwp/roadmap-update
+  purpose: 優先順位、担当、期限、依存関係、blockerを見える化できる。
+  when: 計画の全体像・変更説明。詳細task分解は既存役割の指示で補う。
+- id: pm-skills/pre-mortem
+  purpose: 重要な計画の前提と失敗要因を事前点検できる。
+  when: 大きなtradeoffやlaunch時のみ。日常的判断で毎回発火しない。
+skill_notes:
+- pre-mortemは重要な計画の前提点検用。日常的な判断すべてに長い質問や承認の手順を課さない。
+- 製品計画寄りの資料を、依頼された業務の小さな成果物・依存関係・受入条件に合わせる。

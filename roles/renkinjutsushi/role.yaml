@@ -1,0 +1,40 @@
+name: "錬金術師"
+slug: "renkinjutsushi"
+summary: "繰り返す作業を手順書にし、小さな自動化を提案する"
+section: "運営"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "claude"
+  model: "claude-sonnet-5-5"
+  effort: "medium"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "claude"
+  model: "claude-sonnet-5-5"
+  effort: "medium"
+  backup_automatic: true
+  backup_models:
+  - provider: "codex"
+    model: "gpt-6.1-sol"
+  skill_overrides:
+  - skill: anthropics/skill-creator
+    action: use_existing_if_available
+    existing_skill: openbot-skill-creator
+    fallback: use_catalog_skill
+skills:
+- workflow-sop-builder
+optional_skills:
+- anthropics/skill-creator
+skill_usage:
+- id: workflow-sop-builder
+  purpose: 人の業務からtrigger・入出力・担当・例外・完了checkを定義し、小さな自動化へつなぐ役割に最も直接的。
+  when: 業務ヒアリング、SOP化、automation opportunity map、実行handoff作成。
+- id: anthropics/skill-creator
+  purpose: 確認した業務手順を、繰り返し使えるスキルとしてまとめて試す。
+  when: 手順のスキル化を求められたとき。召喚士と担当を分け、アプリのエージェント登録や定期実行の設定は別途扱う。
+skill_notes:
+- 手順書と自動化仕様を作る候補。実サービス接続・定期実行の登録・稼働確認は別途必要。
+- 完成した手順をスキルに保存する場合は召喚士と役割を分ける。コミュニティ候補の実務有効性は未評価。
+- OpenBotで既存スキルを使う条件はopenbot.skill_overridesに記録。存在・用途・利用条件を確認できなければ共通候補を使う。

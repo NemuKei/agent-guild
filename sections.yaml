@@ -1,0 +1,12 @@
+# チームの分け方
+sections:
+  - name: "運営"
+    roles: ["daikenja", "denrei", "tsukaima", "shoukanshi", "renkinjutsushi", "shokikan"]
+  - name: "企画・調査"
+    roles: ["gunshi", "tankyuusha", "senseijutsushi", "zaimukan", "sokuryoushi", "monomi"]
+  - name: "制作"
+    roles: ["zoukeishi", "choukokushi", "doukeshi", "kataribe", "bunkan"]
+  - name: "開発"
+    roles: ["kajishi", "kanteishi", "chiyushi", "kekkaishi", "kishu"]
+  - name: "営業・広報"
+    roles: ["sekkou", "ginyuushijin", "annainin", "shikenkan"]

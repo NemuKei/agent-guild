@@ -1,0 +1,37 @@
+name: "治癒師"
+slug: "chiyushi"
+summary: "不具合の原因を突き止め、いちばん小さい直し方を見つける"
+section: "開発"
+instructions: "instructions.md"
+avatar: "avatar.png"
+# モデルは例。アプリで使えるものに合わせて選ぶ。
+model_example:
+  provider: "codex"
+  model: "gpt-6.1-sol"
+  effort: "medium"
+# OpenBotでの実際の設定（2026-11-01時点）。変えたらここも更新する。
+openbot:
+  provider: "codex"
+  model: "gpt-6.1-sol"
+  effort: "medium"
+  backup_automatic: true
+  backup_models:
+  - provider: "claude"
+    model: "claude-opus-5-5"
+skills:
+- superpowers/systematic-debugging
+- superpowers/verification-before-completion
+optional_skills:
+- superpowers/test-driven-development
+skill_usage:
+- id: superpowers/systematic-debugging
+  purpose: ログ・再現・単一仮説から最小修正へ進む役割の指示に直結する。
+  when: 報告された不具合、test/build失敗、予期しない動作の原因調査。
+- id: superpowers/verification-before-completion
+  purpose: 修正完了の主張に原不具合の再実行と回帰チェックの証拠を要求する。
+  when: 原因特定・修正・成功を報告する前。
+- id: superpowers/test-driven-development
+  purpose: 修正前に原症状を失敗テストへ落とし、回帰防止を検証する。systematic-debugging本文が参照。
+  when: ユーザーから修正実装も求められた段階。
+skill_notes:
+- 原因調査だけの依頼では修正へ進まない。修正した場合は元の症状と関係する回帰を確認する。
