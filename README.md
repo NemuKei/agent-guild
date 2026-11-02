@@ -340,6 +340,6 @@ flowchart LR
 
 ## ライセンス
 
-[MIT](LICENSE)。紋章の画像は [CC0 1.0](docs/assets/emblems/CC0-1.0.txt)（上の「紋章の画像について」）。スキルは、それぞれのリポジトリのライセンスに従います。
+コードと文書は [MIT](LICENSE)。紋章の画像は [CC0 1.0](docs/assets/emblems/CC0-1.0.txt)（上の「紋章の画像について」）。スキルは、それぞれのリポジトリのライセンスに従います。
 
 <p align="center"><sub>⚔️ ようこそ、ギルドへ。最初の依頼は、パーティ選びから。</sub></p>
