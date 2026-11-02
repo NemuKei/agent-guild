@@ -124,6 +124,16 @@ profile の保存値は新しい会話の既定値です。既存の Bot Chat �
 - 実行中の会話では `status: deferred`（次のターンから適用）が返ることがある。この時点では「適用予約」であり、次のターン後に読み戻すまで適用済みと扱わない。
 - 反映のために会話のリセット、gateway の再起動、DB の直接編集はしない。検証のための新しい依頼も、既存の仕事の会話には送らない。
 
+### 新しい Bot を作る
+
+足りない役割は Desktop の **New Agent**、または gateway の `profiles.create` で1体ずつ作ります。
+
+- profile 名は役割の `slug`（例：`gunshi`）にすると、`handoffs` の名前と対応が取りやすい。似た名前の既存 profile と取り違えないようにする。既存 profile の改名は `hermes profile rename OLD NEW` を使う（履歴とルーティングも移る）。
+- 資格情報のコピー（`mirror_credentials`）は既定で有効です。使わない場合は無効にし、各 provider の通常のログイン状態を `hermes -p PROFILE auth status PROVIDER` で確かめます。確認した環境では、Codex は既存のログインがそのまま使えました。
+- Claude Subscription DirectSDK のような provider プラグインは profile ごとの導入です。**プラグインを入れる前にモデルを指定すると、モデルが適用されないか予備モデルで動きます**。順番は「profile 作成 → `hermes -p PROFILE plugins install claude-subscription-directsdk --enable` → モデル指定 → 試験」です。
+- `profiles.configure` の `applied.model` が `true` になったか必ず確認します。`false` のまま進めると、保存値と実際に動くモデルがずれます。
+- `profiles.list` は `ui_meta_revisions` を返さない版があります。`ui_meta_conflicts` が返ったら、そこにある現在の版番号で読み直して再送します。
+
 ## 4. スキルを選ぶ
 
 [スキルの準備手順](../skills/README.md) と [catalog.yaml](../skills/catalog.yaml) を使います。
@@ -136,6 +146,14 @@ profile の保存値は新しい会話の既定値です。既存の Bot Chat �
 5. 対象 profile のスキル管理で登録し、実際のツール名・パス・権限へ対応させる。
 6. 少量の入力で、補助ファイルの読取・道具の実行・成果物・役割の境界を試す。
 7. 候補の版、Hermes の版、入力、結果、未準備の依存を非公開の導入記録へ残す。
+
+
+確認した環境では、次の手順で各 Bot の profile にスキルを入れました。
+
+- カタログの `repo`・`commit`・`path` で**固定コミットのファイルだけ**を取得し（`support_paths` とライセンス本文も同じコミットから）、各 profile の `skills/` の下に置く。取得元を記録したファイルを一緒に残す。
+- 置く前に Hermes のスキル検査（`tools.skills_guard.scan_skill`）を通し、判定が `safe` のものだけ導入する。`caution` は自動では入れず、検出内容を持ち主に見せて判断してもらう。
+- 同じ名前のスキルがすでにその profile にある場合（付属スキルやプラグイン同梱）は上書きしない。
+- `hermes -p PROFILE skills list` に `enabled` として出ることを確かめる。スキルは profile ごとに独立しているので、Bot ごとに別の組み合わせを持たせられる。
 
 既存スキルで代替するなら、名前だけでなく用途・出所・版・利用条件・実行可否を確認します。
 `openbot.skill_overrides` は OpenBot 用で、Hermes の自動ルールではありません。
@@ -180,15 +198,15 @@ Slack などは受付・取り次ぎ、正本の Bot Chat は差配、と窓口�
 ### 確認済みの範囲（2026-11-02）
 
 Hermes CLI v0.22.5 での限定確認です。
-既存2 profile の役割を整え、原文と非公開補足を分離し、ID・履歴を保持しました。
-表示名・説明・部署を読み戻し、アップロード画像は役割のアバターとバイト一致を確認しました。
-上表の両主経路で別々のテキスト試験が成功し、Sol では `vision_analyze` による画像確認も成功しました。
-保存された runtime は両方 `fallback_active=false`、対象会話付きの reasoning 確認は両方 `high` でした。
-既存の会話は、彫刻師で Sol / `high` を読み戻しました。大賢者の実行中の会話は旧設定のままで、
-`session.mutate` による切替えは `deferred`（次ターンから適用予定）として受け付けられた段階です。
-予備チェーンの保存は確認済みですが、**障害時の自動 fallback は未試験**です。
-レシピ全体の運用、全候補スキル、Bot 間・Slack の往復、製品・創作品質は未検証です。
-この確認で他 Bot の新設、旧制作の再開、認証設定の変更はしていません。
+
+| 項目 | 結果 |
+|---|---|
+| 編成 | `full-guild` の26職業すべてを常設 Bot として用意（既存2体を整合、24体を新設） |
+| 既存 Bot | 原文と非公開の補足を分け、会話履歴・作業ファイルを保持。1体は内部IDを `hermes profile rename` で役割 slug に揃えた |
+| 表示 | 表示名・説明・部署を読み戻し、アバターは各役割の `avatar.png` とバイト一致 |
+| モデル | 26体とも新しい試験会話で応答し、実際の provider / model が `model_example` と一致。`fallback_active=false` |
+| スキル | 固定コミットから取得し Hermes のスキャンで `safe` の候補だけ導入。`caution` は持ち主の確認待ちとして保留 |
+| 未確認 | 障害時の自動 fallback、Bot 間の依頼往復、各スキルの実作業での動作、製品・創作の品質 |
 
 ## 7. 更新とロールバック
 
